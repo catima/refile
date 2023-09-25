@@ -397,7 +397,7 @@ module Refile
     # @param [String, nil] expires_at      Adds a sulfix to the URL that sets the expiration time of the URL
     # @param [String, nil] force_download  Adds a sulfix to the URL to force the download of the file when URL is accessed
     # @return [String, nil]                The generated URL
-    def attachment_url(object, name, *args, expires_at: nil, host: nil, prefix: nil, filename: nil, format: nil, force_download: nil, **kwargs)
+    def attachment_url(object, name, *args, expires_at: nil, host: nil, prefix: nil, filename: nil, format: nil, force_download: nil)
       attacher = object.send(:"#{name}_attacher")
       file = attacher.get
       return unless file

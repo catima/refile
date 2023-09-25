@@ -26,7 +26,7 @@ module Refile
 
           define_method :"#{name}=" do |files|
             cache, files = [files].flatten.partition { |file| file.is_a?(String) }
-            cache = cache.map { |item| Refile.parse_json(item) || [] }.concat(&:_).flatten
+            cache = Refile.parse_json(cache.first) || []
             cache = cache.reject(&:empty?)
             files = files.compact
 
