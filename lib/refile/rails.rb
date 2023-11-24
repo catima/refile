@@ -29,6 +29,8 @@ module Refile
     initializer "refile.secret_key" do |app|
       Refile.secret_key ||= if app.respond_to?(:credentials) && key_exists?(app.credentials)
         app.credentials.secret_key_base
+      elsif app.respond_to?(:secrets) && key_exists?(app.secrets)
+        app.secrets.secret_key_base
       elsif app.config.respond_to?(:secret_key_base) && key_exists?(app.config)
         app.config.secret_key_base
       elsif app.config.respond_to?(:secret_token)
